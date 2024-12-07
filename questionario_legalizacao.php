@@ -92,8 +92,27 @@
         <p>As informações que você adquiriu aqui podem impactar diretamente a maneira como a sociedade vê essa planta e suas potenciais aplicações. Sua resposta pode ajudar a moldar o futuro do cânhamo no Brasil.</p>
 
         <h2>Você aprova a legalização do Cânhamo no Brasil?</h2>
-        <a href="agradecimento.php?resposta=sim" class="btn">Sim</a>
-        <a href="agradecimento.php?resposta=nao" class="btn">Não</a>
+        <a href="agradecimento.php?resposta=sim" class="btn" id="sim">Sim</a>
+        <a href="agradecimento.php?resposta=nao" class="btn" id="nao">Não</a>
+        <script>
+        const apiUrl = "https://sheetdb.io/api/v1/fg4m5fn8i96lj"; // Substitua pela URL do SheetDB ou Apps Script
+
+        document.getElementById("sim").addEventListener("click", () => enviarResposta("sim"));
+        document.getElementById("nao").addEventListener("click", () => enviarResposta("não"));
+
+        function enviarResposta(resposta) {
+            fetch(apiUrl, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ resposta }),
+            })
+            .then(response => response.text())
+            .then(data => alert("Resposta enviada!"))
+            .catch(err => console.error("Erro:", err));
+        }
+    </script>
     </section>
 
     <footer>
